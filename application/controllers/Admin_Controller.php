@@ -289,6 +289,35 @@ class Admin_Controller extends CI_Controller
         $this->load->view('Admin/left');
         $this->load->view('Admin/Add_Stornglass');
         $this->load->view('Admin/footer');
+    }
+    /** Save Stronglass Details */
+    public function Save_ST()
+    {
+        $data = array( 'ST_Name' => $this->input->post('company_name'),
+            'ST_GSTIN' =>$this->input->post('gstin_number'),
+            'ST_Address_1' =>$this->input->post('address'),
+            'ST_Address_2' =>$this->input->post('address1'),
+            'ST_Area' =>$this->input->post('area'),
+            'ST_City' =>$this->input->post('city'),
+            'ST_State' =>$this->input->post('state'),
+            'ST_Phone' =>$this->input->post('phone'),
+            'ST_Alternate_Phone' =>$this->input->post('alternate_phone'),
+            'ST_Email_ID1' =>$this->input->post('email_1'),
+            'ST_Email_ID2' =>$this->input->post('email_2'),
+            'ST_Bank' =>$this->input->post('bank'),
+            'ST_Bank_Account_Number' =>$this->input->post('account'),
+            'ST_Bank_Account_Type' =>$this->input->post('account_type'),
+            'ST_Bank_Account_IFSC_Code' =>$this->input->post('ifsc'),
+            'ST_created_by' => $this->session->userdata['userid']);
+        $insert = $this->admin_model->save_address($data);
+        if($insert == 1)
+        {
+            redirect('Admin_Controller/Add_Address');
+            $this->session->set_flashdata('message', 'Insert Success..');
+        }
+        else{
+            $this->session->set_flashdata('message', 'Insert Failed..');
+        }
 
     }
 
