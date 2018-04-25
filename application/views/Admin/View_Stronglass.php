@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="tile">  <h3 class="tile-title">Size</h3>
+            <div class="tile">  <h3 class="tile-title">Stronglass Tough</h3>
                 <div class="tile-body">
                     <table class="table table-hover table-bordered" id="size_table">
                         <tbody>
