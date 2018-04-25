@@ -324,12 +324,21 @@ class Admin_Controller extends CI_Controller
             else{
                 $this->session->set_flashdata('message', 'Insert Failed..');
             }
-
         }
         else{
             $this->session->set_flashdata('message', 'Insert Failed..');
         }
-
+    }
+    /** View Stronglass */
+    public function View_Stronglass()
+    {
+        $data['st']= $this->admin_model->get_ST();
+        $data['tax']= $this->admin_model->get_Tax();
+        $this->load->view('Admin/header');
+        $this->load->view('Admin/top');
+        $this->load->view('Admin/left');
+        $this->load->view('Admin/View_Stronglass',$data,false);
+        $this->load->view('Admin/footer');
     }
 
 }

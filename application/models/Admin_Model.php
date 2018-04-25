@@ -121,7 +121,18 @@ class Admin_Model extends CI_Model
     {
         $this->db->insert('tax_details', $data);
         return 1;
+    }
+    //** Get Stronglass Details */
+    public function get_ST()
+    {
+        $query = $this->db->query("Select * from stronglasstough_details ");
+        return $query->result_array();
+    }
 
+    /*Get Tax */
+    public function get_Tax(){
+        $query = $this->db->query("Select * from tax_details ");
+        return $query->result_array();
     }
 
 
