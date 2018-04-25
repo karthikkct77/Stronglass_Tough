@@ -110,6 +110,20 @@ class Admin_Model extends CI_Model
         $this->db->insert('customer_add_address', $data);
         return 1;
     }
+    /** Save stronglass details */
+    public function save_stronglass($data)
+    {
+        $this->db->insert('stronglasstough_details', $data);
+        return 1;
+    }
+    /** save tat details */
+    public function save_tax($data)
+    {
+        $this->db->insert('tax_details', $data);
+        return 1;
+
+    }
+
 
 
 

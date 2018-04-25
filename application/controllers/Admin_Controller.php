@@ -309,11 +309,22 @@ class Admin_Controller extends CI_Controller
             'ST_Bank_Account_Type' =>$this->input->post('account_type'),
             'ST_Bank_Account_IFSC_Code' =>$this->input->post('ifsc'),
             'ST_created_by' => $this->session->userdata['userid']);
-        $insert = $this->admin_model->save_address($data);
+        $insert = $this->admin_model->save_stronglass($data);
         if($insert == 1)
         {
-            redirect('Admin_Controller/Add_Address');
-            $this->session->set_flashdata('message', 'Insert Success..');
+            $datas = array('SGST%' =>$this->input->post('sgst'),
+                'CGST%' =>$this->input->post('cgst'),
+                'Tax_UpdatedBy' => $this->session->userdata['userid']);
+            $insert = $this->admin_model->save_tax($datas);
+            if($insert == 1)
+            {
+                redirect('Admin_Controller/Add_Address');
+                $this->session->set_flashdata('message', 'Insert Success..');
+            }
+            else{
+                $this->session->set_flashdata('message', 'Insert Failed..');
+            }
+
         }
         else{
             $this->session->set_flashdata('message', 'Insert Failed..');
