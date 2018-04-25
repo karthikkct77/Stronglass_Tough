@@ -16,6 +16,7 @@ class Admin_Controller extends CI_Controller
         $this->load->helper('url');   /***** LOADING HELPER TO AVOID PHP ERROR ****/
         $this->load->model('Admin_Model','admin_model'); /* LOADING MODEL * Technical_Admin_Model as technical_admin_model */
         $this->load->library('session');
+        $this->load->library('excel');
         $this->session->set_flashdata('message');
     }
 
@@ -348,6 +349,48 @@ class Admin_Controller extends CI_Controller
         $this->load->view('Admin/left');
         $this->load->view('Admin/Invoice');
         $this->load->view('Admin/footer');
+    }
+    /** Upload excel data to list */
+    public function Upload_Invoice()
+    {
+        $configUpload['upload_path'] = FCPATH.'uploads/excel/';
+        $configUpload['allowed_types'] = 'xls|xlsx|csv';
+        $configUpload['max_size'] = '5000';
+        $this->load->library('upload', $configUpload);
+        $this->upload->do_upload('userfile');
+        $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+        $file_name = $upload_data['file_name']; //uploded file name
+        $extension=$upload_data['file_ext'];    // uploded file extension
+
+        //$objReader =PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
+        $objReader= PHPExcel_IOFactory::createReader('Excel2007'); // For excel 2007
+        //Set to read only
+        $objReader->setReadDataOnly(true);
+        //Load excel file
+        $objPHPExcel=$objReader->load(FCPATH.'uploads/excel/'.$file_name);
+        $totalrows=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
+        $objWorksheet=$objPHPExcel->setActiveSheetIndex(0);
+        //loop from first data untill last data
+        for($i=2;$i<=$totalrows;$i++)
+        {
+            $thickness=$objWorksheet->getCellByColumnAndRow(0,$i)->getValue();
+            $dimension=$objWorksheet->getCellByColumnAndRow(1,$i)->getValue();
+            $pics=$objWorksheet->getCellByColumnAndRow(2,$i)->getValue();
+            $holes=$objWorksheet->getCellByColumnAndRow(3,$i)->getValue();
+            $types=$objWorksheet->getCellByColumnAndRow(4,$i)->getValue();
+            $data_user[]=array(
+                'Thickness'=>$thickness,
+                'dimension'=>$dimension,
+                'pics'=>$pics,
+                'holes'=>$holes,
+                'type'=>$types);
+        }
+        $this->load->view('Admin/header');
+        $this->load->view('Admin/top');
+        $this->load->view('Admin/left');
+        $this->load->view('Admin/View_Invoice');
+        $this->load->view('Admin/footer');
+
     }
 
 }
