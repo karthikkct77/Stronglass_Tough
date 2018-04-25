@@ -33,6 +33,8 @@
 
             </ul>
         </li>
+        <li><a class="app-menu__item" href="<?php echo site_url('Admin_Controller/Proforma_Invoice'); ?>"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Proforma_Invoice</span></a></li>
+
 
     </ul>
 </aside>

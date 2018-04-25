@@ -340,5 +340,14 @@ class Admin_Controller extends CI_Controller
         $this->load->view('Admin/View_Stronglass',$data,false);
         $this->load->view('Admin/footer');
     }
+    /** Proforma_Invoice */
+    public function Proforma_Invoice()
+    {
+        $this->load->view('Admin/header');
+        $this->load->view('Admin/top');
+        $this->load->view('Admin/left');
+        $this->load->view('Admin/Invoice');
+        $this->load->view('Admin/footer');
+    }
 
 }
