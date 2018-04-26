@@ -341,9 +341,21 @@ class Admin_Controller extends CI_Controller
         $this->load->view('Admin/View_Stronglass',$data,false);
         $this->load->view('Admin/footer');
     }
+
+    /** Get PErticular customer details */
+    public function get_Customer_Details()
+    {
+        $customer_id = $this->input->post('id',true);
+        $data= $this->admin_model->get_customer_details($customer_id);
+        echo  json_encode($data);
+
+
+    }
     /** Proforma_Invoice */
     public function Proforma_Invoice()
     {
+        $this->load->helper('string');
+        echo random_string('alnum',5);
         $this->load->view('Admin/header');
         $this->load->view('Admin/top');
         $this->load->view('Admin/left');
@@ -385,12 +397,14 @@ class Admin_Controller extends CI_Controller
                 'holes'=>$holes,
                 'type'=>$types);
         }
+        $data['invoice'] =  $data_user;
+        $data['st']= $this->admin_model->get_ST();
+        $data['customer']= $this->admin_model->get_all_customers();
         $this->load->view('Admin/header');
         $this->load->view('Admin/top');
         $this->load->view('Admin/left');
-        $this->load->view('Admin/View_Invoice');
+        $this->load->view('Admin/View_Invoice',$data,false);
         $this->load->view('Admin/footer');
-
     }
 
 }

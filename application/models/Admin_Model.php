@@ -134,6 +134,13 @@ class Admin_Model extends CI_Model
         $query = $this->db->query("Select * from tax_details ");
         return $query->result_array();
     }
+    /** get customer details */
+    public function get_customer_details($id)
+    {
+        $query = $this->db->query("Select * from customer_master WHERE Customer_Icode ='$id'");
+        return $query->result_array();
+
+    }
 
 
 
