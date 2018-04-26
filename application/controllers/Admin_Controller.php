@@ -149,6 +149,7 @@ class Admin_Controller extends CI_Controller
     public function Inventry()
     {
         $data['inventary']= $this->admin_model->get_all_inventary();
+        $data['stock']= $this->admin_model->get_all_item();
         $this->load->view('Admin/header');
         $this->load->view('Admin/top');
         $this->load->view('Admin/left');
@@ -386,20 +387,29 @@ class Admin_Controller extends CI_Controller
         for($i=2;$i<=$totalrows;$i++)
         {
             $thickness=$objWorksheet->getCellByColumnAndRow(0,$i)->getValue();
-            $dimension=$objWorksheet->getCellByColumnAndRow(1,$i)->getValue();
-            $pics=$objWorksheet->getCellByColumnAndRow(2,$i)->getValue();
-            $holes=$objWorksheet->getCellByColumnAndRow(3,$i)->getValue();
-            $types=$objWorksheet->getCellByColumnAndRow(4,$i)->getValue();
+            $height=$objWorksheet->getCellByColumnAndRow(1,$i)->getValue();
+            $width=$objWorksheet->getCellByColumnAndRow(2,$i)->getValue();
+            $pics=$objWorksheet->getCellByColumnAndRow(3,$i)->getValue();
+            $holes=$objWorksheet->getCellByColumnAndRow(4,$i)->getValue();
+            $types=$objWorksheet->getCellByColumnAndRow(5,$i)->getValue();
+            $charge_height = $height + 30;
+            $charge_weigth = $width + 30;
+            $area = $charge_height/1000 * $charge_weigth/1000;
             $data_user[]=array(
                 'Thickness'=>$thickness,
-                'dimension'=>$dimension,
+                'height'=>$height,
+                'width'=>$width,
                 'pics'=>$pics,
                 'holes'=>$holes,
-                'type'=>$types);
+                'type'=>$types,
+                'ch_height'=>$charge_height,
+                'ch_weight'=>$charge_weigth,
+                'area'=>$area );
         }
         $data['invoice'] =  $data_user;
         $data['st']= $this->admin_model->get_ST();
         $data['customer']= $this->admin_model->get_all_customers();
+        $data['stock']= $this->admin_model->get_all_item();
         $this->load->view('Admin/header');
         $this->load->view('Admin/top');
         $this->load->view('Admin/left');
