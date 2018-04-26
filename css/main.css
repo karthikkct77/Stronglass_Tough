@@ -571,7 +571,7 @@ pre code {
   margin-left: auto;
 }
 /*Vignesh Style*/
-.row.invoice h3, .row.invoice h4, .row.invoice h2{
+.row.invoice h5, .row.invoice h4, .row.invoice h2{
   display: block;
   width: 100%;
   text-align: center;

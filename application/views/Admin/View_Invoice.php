@@ -36,9 +36,9 @@
                         </div>
                         <div id="consign">
                             <h3 id="coustomer"></h3>
-                            <h4 id="address"></h4>
-                            <h4 id="phone"></h4>
-                            <h3 id="gstn"></h3>
+                            <h5 id="address"></h5>
+                            <h5 id="phone"></h5>
+                            <h5 id="gstn"></h5>
                         </div>
 
                     </div>
@@ -64,9 +64,9 @@
                         </div>
                         <div id="Buyer">
                             <h3 id="coustomer1"></h3>
-                            <h4 id="address1"></h4>
-                            <h4 id="phone1"></h4>
-                            <h3 id="gstn1"></h3>
+                            <h5 id="address1"></h5>
+                            <h5 id="phone1"></h5>
+                            <h5 id="gstn1"></h5>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -191,6 +191,7 @@
                     var amount = data[0]['Material_Current_Price'];
                     var total = pcs * area * amount;
                     document.getElementById('total'+id).value = total;
+                    document.getElementById('rate'+id).value = amount;
                 }
             });
         });
