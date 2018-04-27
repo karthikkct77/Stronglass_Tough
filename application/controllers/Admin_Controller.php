@@ -410,6 +410,9 @@ class Admin_Controller extends CI_Controller
         $data['st']= $this->admin_model->get_ST();
         $data['customer']= $this->admin_model->get_all_customers();
         $data['stock']= $this->admin_model->get_all_item();
+        $data['charges']= $this->admin_model->get_all_charges();
+        $data['tax']= $this->admin_model->get_Tax();
+        $perfoma = $this->admin_model->get_profoma_number();
         $this->load->view('Admin/header');
         $this->load->view('Admin/top');
         $this->load->view('Admin/left');

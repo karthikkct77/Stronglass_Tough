@@ -141,6 +141,12 @@ class Admin_Model extends CI_Model
         return $query->result_array();
 
     }
+    //** Get perfoma invoice number */
+    public function get_profoma_number()
+    {
+        $query = $this->db->query("Select * from customer_master WHERE Customer_Icode ='$id'");
+        return $query->result_array();
+    }
 
 
 
