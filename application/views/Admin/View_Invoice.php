@@ -16,7 +16,7 @@
                 <div class="row invoice">
                     <h2><?php echo $st[0]['ST_Name']; ?></h2>
                     <h4><?php echo $st[0]['ST_Address_1']; ?>,<?php echo $st[0]['ST_Area']; ?>,<?php echo $st[0]['ST_City']; ?></h4>
-                    <h3>Mob: <?php echo $st[0]['ST_Phone']; ?></h3>
+                    <h4>Mob: <?php echo $st[0]['ST_Phone']; ?></h4>
                     <h4>Email :<?php echo $st[0]['ST_Email_ID1']; ?></h4>
                 </div>
                 <hr>
@@ -115,13 +115,27 @@
                                 <td><input class="form-control" type="text" name="ch_height[]" id="ch_height<?php echo $i; ?>" value="<?php echo $key['ch_height']; ?>" readonly></td>
                                 <td><input class="form-control" type="text" name="ch_weight[]" id="ch_weight<?php echo $i; ?>" value="<?php echo $key['ch_weight']; ?>" readonly></td>
                                 <td><input class="form-control" type="text" name="area[]" id="area<?php echo $i; ?>" value="<?php echo $key['area']; ?>" readonly></td>
-                                <td><input class="form-control" type="text" name="rate[]" id="rate<?php echo $i; ?>" ></td>
+                                <td><input class="form-control" type="text" name="rate[]" id="rate<?php echo $i; ?>" onkeyup="change_rate('<?php echo $i; ?>')" ></td>
                                 <td><input class="form-control" type="text" name="total[]" id="total<?php echo $i; ?>" ></td>
                             </tr>
-
                         <?php $i++; } ?>
+
                         </tbody>
                     </table>
+                    <input type="text" class="form-control pull-right" id="grand_total" readonly/>
+                    <script>
+                        $("#grand_total").on('click', function() {
+                            var total =document.getElementsByName("total[]");
+                            var totals = [];
+                            for (var j = 0, iLen = total.length; j < iLen; j++) {
+                                totals.push(total[j].value);
+                            }
+                            var sum =0;
+                            for(var i in arr) { sum += totals[i]; }
+                            alert(sum);
+
+                        });
+                    </script>
                 </div>
 
             </div>
@@ -190,11 +204,19 @@
 
                     var amount = data[0]['Material_Current_Price'];
                     var total = pcs * area * amount;
-                    document.getElementById('total'+id).value = total;
+                    document.getElementById('total'+id).value = total.toFixed(2);
                     document.getElementById('rate'+id).value = amount;
                 }
             });
         });
+    }
+
+    function change_rate(id) {
+        var pcs = document.getElementById('pics'+id).value;
+        var area = document.getElementById('area'+id).value;
+        var rate = document.getElementById('rate'+id).value;
+        var total = (pcs * area * rate);
+        document.getElementById('total'+id).value = total;
     }
     </script>
 
