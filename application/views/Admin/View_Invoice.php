@@ -448,6 +448,7 @@
 
 
     function Save_invoice() {
+        $invoice =  document.getElementById('pics'+id).value;
 
 
     }
