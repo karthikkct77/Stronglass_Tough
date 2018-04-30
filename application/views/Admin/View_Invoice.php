@@ -70,7 +70,8 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <h2>Invoice No: 123</h2>
+                        <h2>Invoice No: <input type="text" name="invoice_no" id="invoice_no" value="12345"></h2>
+                        <h3>Date:<input type="text" name="invoice_date" id="invoice_date" value="<?php echo date('Y-m-d'); ?>"> </h3>
                     </div>
                 </div>
 
@@ -448,7 +449,8 @@
 
 
     function Save_invoice() {
-        $invoice =  document.getElementById('pics'+id).value;
+        var invoice =  document.getElementById('invoice_no').value;
+        var invoice_date =  document.getElementById('invoice_date').value;
 
 
     }
