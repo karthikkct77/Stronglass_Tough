@@ -86,9 +86,9 @@ class Admin_Controller extends CI_Controller
         else{
             $this->session->set_flashdata('message', 'Insert Failed..');
         }
-
     }
     //** Item Charges */
+
     public function Charges_Entry()
     {
         $data['charges']= $this->admin_model->get_all_charges();
