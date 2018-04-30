@@ -12,7 +12,7 @@ class Admin_Controller extends CI_Controller
             redirect('Login');
         }
 
-        //$this->load->model('LoginModel','LoginModel');
+        //bj bj bjbjbjbj$this->load->model('LoginModel','LoginModel');
         $this->load->helper('url');   /***** LOADING HELPER TO AVOID PHP ERROR ****/
         $this->load->model('Admin_Model','admin_model'); /* LOADING MODEL * Technical_Admin_Model as technical_admin_model */
         $this->load->library('session');
